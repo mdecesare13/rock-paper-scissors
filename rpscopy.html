@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+
+      function computerPlay() {
+          let randNumber = Math.floor(Math.random() * 3); // Generates random int of 0, 1, or 2
+          switch (randNumber) {
+              case 0:
+                return "rock";
+              case 1:
+                return "paper";
+              case 2:
+                return "scissors";
+          }
+      }
+
+      function playRound(playerSelection, computerSelection) {
+          if (typeof(playerSelection) != "string") {
+              return "Please input a string!";
+          }
+          let playerMove = playerSelection.toLowerCase();
+          // Tie condition
+          if (playerMove === computerSelection) {
+              return "It's a tie!";
+          // Player wins condition
+          } else if ((playerMove === "rock" && computerSelection ==="scissors") || (playerMove === "paper" && computerSelection ==="rock") || (playerMove ==="scissors" && computerSelection === "paper")) { 
+              return ("You win! " + playerMove + " beats " + computerSelection + ".");
+          } else {
+              return ("You lose! " + playerMove + " doesn't beat " + computerSelection + ".")
+          }
+      }
+
+      function game() {
+          let winCounter = 0;
+          for (i = 0; i < 5; i++) {
+              let playerMove = prompt("Make a move - either rock, paper, or scissors.");
+              let computerMove = computerPlay();
+
+              // Get result and inform the player
+              let gameResult = playRound(playerMove, computerMove);
+              console.log(gameResult + " You have " + (5 - 1 - i) + " games left.");
+
+              // Increment winCounter based off results
+              if (gameResult === ("You win! " + playerMove.toLowerCase() + " beats " + computerMove + ".")) {
+                  winCounter++;
+              } else if (gameResult === ("You lose! " + playerMove.toLowerCase() + " doesn't beat " + computerMove + ".")) {
+                  winCounter--;
+              }
+          }
+          // Get the end result of the 5 games
+          if (winCounter > 0) {
+              return "Be a sore winner. You earned it.";
+          } else if (winCounter == 0) {
+              return "You tied! What are the odds...";
+          } else {
+              return "L-O-S-E-R!";
+          }
+      }
+
+  </script>
+</body>
+</html>
