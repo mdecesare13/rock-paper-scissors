@@ -138,11 +138,17 @@
             playerScore = parseInt(document.getElementById("you-score").textContent);
             computerScore = parseInt(document.getElementById("computer-score").textContent);
             if (playerScore == computerScore) {
-                alert("It's a tie!");
+                setTimeout(function () {
+                    alert("It's a tie!");
+                }, 0);
             } else if (playerScore > computerScore) {
-                alert("You win! Beast!");
+                setTimeout(function () {
+                    alert("You win! Beast!");
+                }, 0);
             } else {
-                alert("You suck...");
+                setTimeout(function () {
+                    alert("You suck...");
+                }, 0);
             }
             document.getElementById("you-score").innerHTML = 0;
             document.getElementById("computer-score").innerHTML = 0;
@@ -162,7 +168,6 @@
 
             playRound(button.className, computerTry);
             totalGames++;
-
             reset();
         })
     );
@@ -191,13 +196,13 @@
             let playerScore = document.getElementById("you-score");
             let currentPlayerScore = playerScore.textContent;
             playerScore.innerHTML = parseInt(currentPlayerScore) + 1;
-            return ("You win! " + playerMove + " beats " + computerSelection + ".");
+            return;
         } else {
             // Score one for the computer
             let compScore = document.getElementById("computer-score");
             let currentCompScore = compScore.textContent;
             compScore.innerHTML = parseInt(currentCompScore) + 1;
-            return ("You lose! " + playerMove + " doesn't beat " + computerSelection + ".")
+            return;
         }
     }
 
